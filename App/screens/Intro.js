@@ -14,14 +14,16 @@ import RoundIconBtn from "../components/RoundIconBtn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const Intro = () => {
   const [name, setName] = useState("");
+  const handleOnChangeText = (text) => setName(text);
+
   const handleSubmit = async () => {
     const user = { name: name };
     await AsyncStorage.setItem("user", JSON.stringify(user));
   };
-  const handleOnChangeText = (text) => setName(text);
+
   return (
     <>
-      {/* <StatusBar hidden /> */}
+      <StatusBar barStyle={"light-content"} backgroundColor={colors.primary} />
       <View style={styles.container}>
         <Text style={styles.textInputTitle}>Enter The Name To Continue</Text>
         <TextInput

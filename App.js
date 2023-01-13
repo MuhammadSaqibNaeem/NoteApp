@@ -2,24 +2,27 @@
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import colors from "./App/misc/colors";
 import Intro from "./App/screens/Intro";
+import NoteScreen from "./App/screens/NoteScreen";
 export default function App() {
-  const user = async () => {
-    const username = AsyncStorage.getItem("user");
-    console.log(username);
+  const [user, setUser] = useState({});
+  const userInfo = async () => {
+    const userName = AsyncStorage.getItem("user");
+    // setUser(JSON.parse(userName));
+    alert(userName);
   };
   useEffect(() => {
-    user();
+    userInfo();
   }, []);
 
   return (
     <>
-      <StatusBar backgroundColor={colors.primary} />
       <View style={styles.container}>
         <Intro />
+        {/* <NoteScreen user={user} /> */}
       </View>
     </>
   );
