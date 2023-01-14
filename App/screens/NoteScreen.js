@@ -19,7 +19,10 @@ const NoteScreen = ({ user }) => {
     <>
       <StatusBar barStyle={"dark-content"} backgroundColor={colors.light} />
       <View style={styles.container}>
-        <Text style={styles.headerText}>{`Good ${greet} ${user.name}`}</Text>
+        <Text style={styles.headerText}>{`Good ${greet} ${user.name.substring(
+          0,
+          20
+        )} !`}</Text>
       </View>
     </>
   );
@@ -30,7 +33,7 @@ export default NoteScreen;
 const styles = StyleSheet.create({
   container: {},
   headerText: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "bold",
   },
 });
