@@ -11,28 +11,23 @@ export default function App() {
   const [user, setUser] = useState({});
   const userInfo = async () => {
     const findUser = await AsyncStorage.getItem("user");
-    setUser(JSON.parse(findUser));
-    // alert(findUser);
+    if (findUser != null) {
+      setUser(JSON.parse(findUser));
+    }
   };
   useEffect(() => {
     userInfo();
   }, []);
 
-  return (
-    <>
-      <View style={styles.container}>
-        {/* <Intro /> */}
-        <NoteScreen user={user} />
-      </View>
-    </>
-  );
+  if (!user.name) return <Intro onFinish={userInfo} />;
+  return <NoteScreen user={user} />;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
   },
 });

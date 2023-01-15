@@ -2,6 +2,8 @@
 
 import { StatusBar, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
+import SearchBar from "../components/SearchBar";
+import RoundIconBtn from "../components/RoundIconBtn";
 import colors from "../misc/colors";
 
 const NoteScreen = ({ user }) => {
@@ -19,10 +21,14 @@ const NoteScreen = ({ user }) => {
     <>
       <StatusBar barStyle={"dark-content"} backgroundColor={colors.light} />
       <View style={styles.container}>
-        <Text style={styles.headerText}>{`Good ${greet} ${user.name.substring(
-          0,
-          20
-        )} !`}</Text>
+        <Text style={styles.headerText}>{`Good ${greet} ${user.name} !`}</Text>
+        <SearchBar ContainerStyle={{ marginVertical: 15 }} />
+        <View
+          style={[StyleSheet.absoluteFillObject, styles.emptyHeaderContainer]}
+        >
+          <Text style={styles.emptyHeaderText}>Add Note</Text>
+        </View>
+        <RoundIconBtn antIconName={"plus"} style={styles.addBtn} />
       </View>
     </>
   );
@@ -31,9 +37,31 @@ const NoteScreen = ({ user }) => {
 export default NoteScreen;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
   headerText: {
-    fontSize: 20,
+    fontSize: 18,
+    marginTop: 15,
     fontWeight: "bold",
+    alignSelf: "center",
+  },
+  emptyHeaderContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: -1,
+  },
+  emptyHeaderText: {
+    fontSize: 30,
+    fontWeight: "bold",
+    opacity: 0.3,
+    textTransform: "uppercase",
+  },
+  addBtn: {
+    position: "absolute",
+    bottom: 50,
+    right: 20,
   },
 });

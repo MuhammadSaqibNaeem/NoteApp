@@ -12,13 +12,14 @@ import React, { useState } from "react";
 import colors from "../misc/colors";
 import RoundIconBtn from "../components/RoundIconBtn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const Intro = () => {
+const Intro = ({ onFinish }) => {
   const [name, setName] = useState("");
   const handleOnChangeText = (text) => setName(text);
 
   const handleSubmit = async () => {
     const user = { name: name };
     await AsyncStorage.setItem("user", JSON.stringify(user));
+    if (onFinish) onFinish();
   };
 
   return (
@@ -63,5 +64,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginBottom: 5,
     opacity: 0.5,
+    marginLeft: 25,
   },
 });
